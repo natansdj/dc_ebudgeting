@@ -1,0 +1,32 @@
+_H_ym4*C^baGcdn
+
+
+k
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.18.30.%' IDENTIFIED BY 'Admin@)!&' WITH GRANT OPTION;
+
+
+ebudgeting1234567
+
+GRANT ALL PRIVILEGES ON ebudgeting_bpbatam.* TO 'ebudgeting'@'172.18.30.%' IDENTIFIED BY '_H_ym4*C^baGcdnk' WITH GRANT OPTION;
+
+drop user 'ebudgeting'@'172.18.30.%';
+
+REVOKE ALL PRIVILEGES ON *.* from 'ebudgeting'@'172.18.30.%';
+
+5127.011.001.056.E.537114
+5115.966.001.051.O.525113
+5130.016.001.057.B
+5131.004.001.052.E.525113
+5114.956.001.054.A.525115
+5131.004.001.052.I
+
+
+
+
+----------------------------------------------
+
+
+5127.011.001.056.E = 967
+5130.016.001.057.B = 160, 476, 987
+5131.004.001.052.E = 1162
