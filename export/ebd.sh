@@ -1,5 +1,5 @@
 #!/bin/bash
-##docker stop d_ebudgeting dev_oracle dev_adminer dev_mailhog dev_proxy dev_mysql
+##docker stop d_ebudgeting dev_oracle dev_mailhog dev_proxy dev_mysql
 
 TYPE=""
 
@@ -20,6 +20,6 @@ fi
 if [ $TYPE != "" ]; then
     printf "Trigger Docker $TYPE"
     printf "\n"
-###    docker $TYPE d_ebudgeting ebd_redis dev_oracle dev_adminer dev_mailhog dev_proxy dev_mysql
-    docker $TYPE d_ebudgeting ebd_redis dev_oracle dev_adminer dev_mailhog dev_proxy
+###    docker $TYPE d_ebudgeting ebd_redis dev_oracle dev_mailhog dev_proxy dev_mysql
+    docker $TYPE d_ebudgeting ebd_redis dev_oracle dev_mailhog dev_proxy
 fi
