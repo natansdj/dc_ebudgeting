@@ -24,5 +24,5 @@ fi
 if [ $TYPE != "" ]; then
     printf "Trigger Docker $TYPE"
     printf "\n"
-    docker $TYPE d_ebudgeting ebd_redis dev_oracle dev_proxy
+    docker $TYPE d_ebudgeting ebd_redis dev_oracle
 fi
