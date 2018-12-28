@@ -6,6 +6,12 @@ PROJECT=
 ## FUNC
 if [ $# -gt 0 ]; then
     #contain arguments
+    if [ "$1" = "ipn" ]; then
+        printf "Jenkins trigger devIPN"
+        printf "\n"
+        PROJECT="dev-ebudgeting_bpbatam%20(IPNET)"
+    fi
+
     if [ "$1" = "btm" ]; then
         printf "Jenkins trigger devBTM"
         printf "\n"
@@ -13,9 +19,9 @@ if [ $# -gt 0 ]; then
     fi
 else
     #no arguments
-    printf "Jenkins trigger devIPN"
+    printf "Jenkins trigger devIPN ORACLE"
     printf "\n"
-    PROJECT="dev-ebudgeting_bpbatam%20(IPNET)"
+    PROJECT="dev-ebudgeting_bpbatam-oracle%20(IPNET)"
 fi
 
 ## OUT
