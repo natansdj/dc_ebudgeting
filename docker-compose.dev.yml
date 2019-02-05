@@ -13,8 +13,6 @@ services:
     links:
       - redis
     external_links:
-#      - dev_mariadb:mariadb
-      - dev_mysql:mysql
 #      - dev_mailhog:mailhog
       - dev_oracle:oracle
     networks:
@@ -80,7 +78,7 @@ volumes:
   redis:
     driver: local
     driver_opts:
-      device: /home/redis
+      device: /home/lxc/redis_ebudgeting
       o: bind
 
 networks:

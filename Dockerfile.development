@@ -55,11 +55,36 @@ ENV PROVISION_CONTEXT "development"
 
 # Deploy scripts/configurations
 COPY etc/             /opt/docker/etc/
+COPY oracle/          /backup/
 
 RUN ln -sf /opt/docker/etc/cron/crontab /etc/cron.d/docker-boilerplate \
     && chmod 0644 /opt/docker/etc/cron/crontab \
     && echo >> /opt/docker/etc/cron/crontab \
     && ln -sf /opt/docker/etc/php/development.ini /opt/docker/etc/php/php.ini
+
+# Install Oracle Instantclient
+RUN mkdir /opt/oracle \
+    && cd /opt/oracle \
+    && unzip /backup/instantclient-basic-linux.x64-12.2.0.1.0.zip -d /opt/oracle \
+    && unzip /backup/instantclient-sdk-linux.x64-12.2.0.1.0.zip -d /opt/oracle \
+    && ln -s /opt/oracle/instantclient_12_2/libclntsh.so.12.1 /opt/oracle/instantclient_12_2/libclntsh.so \
+    && ln -s /opt/oracle/instantclient_12_2/libclntshcore.so.12.1 /opt/oracle/instantclient_12_2/libclntshcore.so \
+    && ln -s /opt/oracle/instantclient_12_2/libocci.so.12.1 /opt/oracle/instantclient_12_2/libocci.so \
+    && rm -rf /opt/oracle/*.zip
+
+# Install Oracle extensions
+RUN apt-install php7.0-dev php-pear build-essential libaio1
+
+RUN echo 'instantclient,/opt/oracle/instantclient_12_2' | pecl install oci8 \
+    && echo "extension = oci8.so" >> /etc/php/7.0/fpm/php.ini \
+    && echo "extension = oci8.so" >> /etc/php/7.0/cli/php.ini
+
+# RUN docker-php-ext-configure pdo_oci --with-pdo-oci=instantclient,/opt/oracle/instantclient_12_2,12.2 \
+#        && echo 'instantclient,/opt/oracle/instantclient_12_2/' | pecl install oci8 \
+#        && docker-php-ext-install \
+#           pdo_oci \
+#        && docker-php-ext-enable \
+#           oci8
 
 # Configure volume/workdir
 WORKDIR /app/
