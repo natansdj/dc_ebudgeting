@@ -45,6 +45,38 @@ services:
       # PHP_IDE_CONFIG: serverName=workspace.vm
       # XDEBUG_CONFIG: remote_host=172.18.0.1 remote_connect_back=1
 
+  # seeder:
+  #   image: natansdj/php-orcl
+  #   container_name: ebd_seeder
+  #   links:
+  #     - redis
+  #   external_links:
+  #     - dev_oracle:oracle
+  #   networks:
+  #     default:
+  #       ipv4_address: 172.18.0.31
+  #   ports:
+  #     - "8003:80"
+  #     - "8444:443"
+  #   volumes:
+  #     - storage:/storage
+  #     - ../_htdocs/net_ebudgeting_seeder/:/app/
+  #     - ./:/docker/
+  #     - ./etc/php/development.ini:/opt/docker/etc/php/php.ini
+  #   # cap and privileged needed for slowlog
+  #   cap_add:
+  #     - SYS_PTRACE
+  #   privileged: true
+  #   env_file:
+  #     - etc/environment.yml
+  #     - etc/environment.development.yml
+  #   mem_limit: 1000m
+  #   environment:
+  #     VIRTUAL_HOST: "ebudgeting_seeder.vm"
+  #     VIRTUAL_PORT: "80"
+  #     LETSENCRYPT_HOST: "ebudgeting_seeder.vm"
+  #     LETSENCRYPT_EMAIL: "ebud@example.com"
+
   #######################################
   # Redis
   #######################################
@@ -73,11 +105,13 @@ volumes:
   storage:
     driver: local
     driver_opts:
-      device: /home/ip310/Documents/dc_ebudgeting/backup
+      type: bind
+      device: /home/a407/Documents/dc_ebudgeting/backup
       o: bind
   redis:
     driver: local
     driver_opts:
+      type: bind
       device: /home/lxc/redis_ebudgeting
       o: bind
 

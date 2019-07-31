@@ -67,10 +67,14 @@ RUN mkdir /opt/oracle \
     && cd /opt/oracle \
     && unzip /backup/instantclient-basic-linux.x64-12.2.0.1.0.zip -d /opt/oracle \
     && unzip /backup/instantclient-sdk-linux.x64-12.2.0.1.0.zip -d /opt/oracle \
+    && unzip /backup/instantclient-sqlplus-linux.x64-12.2.0.1.0.zip -d /opt/oracle \
     && ln -s /opt/oracle/instantclient_12_2/libclntsh.so.12.1 /opt/oracle/instantclient_12_2/libclntsh.so \
     && ln -s /opt/oracle/instantclient_12_2/libclntshcore.so.12.1 /opt/oracle/instantclient_12_2/libclntshcore.so \
     && ln -s /opt/oracle/instantclient_12_2/libocci.so.12.1 /opt/oracle/instantclient_12_2/libocci.so \
-    && rm -rf /opt/oracle/*.zip
+    && rm -rf /backup/*.zip
+
+ENV LD_LIBRARY_PATH "/opt/oracle/instantclient_12_2:${LD_LIBRARY_PATH}"
+ENV PATH "/opt/oracle/instantclient_12_2:${PATH}"
 
 # Install Oracle extensions
 RUN apt-install php7.0-dev php-pear build-essential libaio1

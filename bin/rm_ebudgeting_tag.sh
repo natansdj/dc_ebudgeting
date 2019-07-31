@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /home/ip310/Documents/_htdocs/net_ebudgeting
+cd /home/a407/Documents/_htdocs/net_ebudgeting
 
 if [ -z "$1" ] | [ -z "$2" ]
   then
