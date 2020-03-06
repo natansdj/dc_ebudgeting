@@ -19,10 +19,10 @@ up:
 	docker-compose up -d
 
 start:
-	docker-compose start
+	docker start dev_oracle && docker-compose up -d
 
 stop:
-	docker-compose stop
+	docker stop dev_oracle && docker-compose stop
 
 state:
 	docker-compose ps
