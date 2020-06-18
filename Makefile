@@ -19,7 +19,7 @@ up:
 	docker-compose up -d
 
 start:
-	docker start dev_oracle && docker-compose up -d
+	docker start dev_oracle && docker-compose up -d app redis
 
 stop:
 	docker stop dev_oracle && docker-compose stop
